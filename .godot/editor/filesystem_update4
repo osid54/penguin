@@ -4,3 +4,6 @@ res://src/themes/islandGradientColor.tres
 res://src/shaders/terrain.gdshader
 res://src/actors/terrain.tscn
 res://src/actors/terrain.gd
+res://src/actors/player.tscn
+res://addons/control_camera3d/control_camera3d_plugin.gd
+res://src/actors/player.gd

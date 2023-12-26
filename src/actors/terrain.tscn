@@ -61,15 +61,6 @@ chunkSize = 512.0
 heightRatio = 32.0
 size = 2048
 
-[node name="ControlCamera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.900761, -0.434196, 0.0102226, 0, 0.0235373, 0.999723, -0.434316, -0.900511, 0.0212015, 1.20742, 118.079, 2.50416)
-current = true
-script = ExtResource("3_50c8k")
-rotation_speed = 2.0
-translation_speed = 100.0
-zoom_speed = 20.0
-zoom_out = 101.0
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -99,3 +90,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("CylinderMesh_au7mg")
 skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+script = ExtResource("3_50c8k")
+translation_speed = 100.0
+zoom_speed = 100.0
+zoom_out = 100.0

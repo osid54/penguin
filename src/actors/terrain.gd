@@ -10,6 +10,7 @@ extends MeshInstance3D
 @export var size := 512
 
 var img := Image.new()
+var img2 := Image.new()
 var shape := HeightMapShape3D.new()
 var textNoise := NoiseTexture2D.new()
 var iceText := NoiseTexture2D.new()
@@ -39,6 +40,12 @@ func _ready():
 	iceText.noise = tNoise
 	iceText.color_ramp = iceGrad
 	
+	isGrad.width = size
+	isGrad.height = size
+
+	isGradCol.width = size
+	isGradCol.height = size
+	
 	#tNoise = material_override.get("shader_parameter/heightmap").noise
 	#textNoise = material_override.get("shader_parameter/heightmap")
 	#iceText = material_override.get("shader_parameter/_a")
@@ -55,15 +62,20 @@ func updateTerrain():
 	img = tNoise.get_image(size,size,false,false,true)
 	img.convert(Image.FORMAT_RF)
 	#img.resize(int(size*colShapeSizeRatio), int(size*colShapeSizeRatio))
+	img2 = isGrad.get_image()
+	img2.convert(Image.FORMAT_RF)
 	var data = img.get_data().to_float32_array()
-	for d in data:
-		d *= heightRatio
+	var data2 = img2.get_data().to_float32_array()
+	
+	for i in range(data.size()):
+		data[i] *= data2[i] * heightRatio
+
 	shape.map_width = img.get_width()
 	shape.map_depth = img.get_height()
 	shape.map_data = data
 	colShape.shape = shape
 	var scaleRatio = chunkSize/float(img.get_width())
-	colShape.scale = Vector3(scaleRatio, heightRatio, scaleRatio)
+	colShape.scale = Vector3(scaleRatio, 1, scaleRatio)
 
 func _process(_delta):
 	pass

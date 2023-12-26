@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://dcmssrx84auwe"]
+[gd_scene load_steps=3 format=3 uid="uid://dcmssrx84auwe"]
+
+[ext_resource type="PackedScene" uid="uid://bx7m5b3psvfjm" path="res://src/actors/terrain.tscn" id="1_rub1y"]
+[ext_resource type="PackedScene" uid="uid://cq0mv0rqwjxqk" path="res://src/actors/player.tscn" id="2_h0buy"]
 
 [node name="main" type="Node"]
+
+[node name="terrain" parent="." instance=ExtResource("1_rub1y")]
+
+[node name="player" parent="terrain" instance=ExtResource("2_h0buy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 62.6544, 0)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq0mv0rqwjxqk"]
+
+[ext_resource type="Script" path="res://src/actors/player.gd" id="1_yhv6n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8b3f4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cae4q"]
+
+[node name="player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+wall_min_slide_angle = 1.0472
+script = ExtResource("1_yhv6n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_8b3f4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_cae4q")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.893552, 0.44896, 0, -0.44896, 0.893552, 0, 1.66684, 3.02841)
+current = true
