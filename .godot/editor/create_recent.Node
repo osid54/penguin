@@ -1,5 +1,5 @@
-DirectionalLight3D
 MeshInstance3D
+DirectionalLight3D
 OmniLight3D
 Camera3D
 StaticBody3D

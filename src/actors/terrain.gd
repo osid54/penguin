@@ -2,6 +2,8 @@ extends MeshInstance3D
 
 @onready var colShape := $StaticBody3D/CollisionShape3D
 @onready var iceGrad := preload("res://src/themes/iceGradient.tres")
+@onready var isGrad := preload("res://src/themes/islandGradient.tres")
+@onready var isGradCol := preload("res://src/themes/islandGradientColor.tres")
 @export var chunkSize := 2.0
 @export var heightRatio := 1.0
 @export var colShapeSizeRatio := 1.0/8
@@ -44,6 +46,9 @@ func updateTerrain():
 	material_override.set("shader_parameter/heightRatio", heightRatio)
 	material_override.set("shader_parameter/_a", iceText)
 	material_override.set("shader_parameter/normals", normals)
+	material_override.set("shader_parameter/radialHeight", isGrad)
+	material_override.set("shader_parameter/radialColor", isGradCol)
+	
 	img = tNoise.get_image(size,size,false,false,true)
 	img.convert(Image.FORMAT_RF)
 	#img.resize(int(size*colShapeSizeRatio), int(size*colShapeSizeRatio))
