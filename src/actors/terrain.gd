@@ -14,30 +14,35 @@ var shape := HeightMapShape3D.new()
 var textNoise := NoiseTexture2D.new()
 var iceText := NoiseTexture2D.new()
 var normals := NoiseTexture2D.new()
-var tNoise
+var tNoise := FastNoiseLite.new()
 
 func _ready():
 	colShape.shape = shape
 	mesh.size = Vector2(chunkSize,chunkSize)
 	mesh.subdivide_width = size-1
 	mesh.subdivide_depth = size-1
-	textNoise.width = size
-	textNoise.height = size
-	textNoise.noise = FastNoiseLite.new()
 	
-	tNoise = textNoise.noise
 	tNoise.noise_type = FastNoiseLite.TYPE_VALUE
 	tNoise.seed = randi()
 	
+	textNoise.width = size
+	textNoise.height = size
+	textNoise.noise = tNoise
+	
 	normals.width = size
-	normals.width = size
+	normals.height = size
 	normals.noise = tNoise
 	normals.as_normal_map = true
 	
 	iceText.width = size
-	iceText.width = size
+	iceText.height = size
 	iceText.noise = tNoise
 	iceText.color_ramp = iceGrad
+	
+	#tNoise = material_override.get("shader_parameter/heightmap").noise
+	#textNoise = material_override.get("shader_parameter/heightmap")
+	#iceText = material_override.get("shader_parameter/_a")
+	#normals = material_override.get("shader_parameter/normals")
 	
 	updateTerrain()
 
@@ -46,8 +51,6 @@ func updateTerrain():
 	material_override.set("shader_parameter/heightRatio", heightRatio)
 	material_override.set("shader_parameter/_a", iceText)
 	material_override.set("shader_parameter/normals", normals)
-	material_override.set("shader_parameter/radialHeight", isGrad)
-	material_override.set("shader_parameter/radialColor", isGradCol)
 	
 	img = tNoise.get_image(size,size,false,false,true)
 	img.convert(Image.FORMAT_RF)

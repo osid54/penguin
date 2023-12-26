@@ -1,7 +1,6 @@
-res://src/actors/terrain.tscn
-res://src/shaders/terrain.gdshader
-res://src/themes/islandGradient.tres
-res://src/actors/terrain.gd
 res://src/scenes/main.tscn
-res://src/themes/iceGradient.tres
+res://src/themes/islandGradient.tres
 res://src/themes/islandGradientColor.tres
+res://src/shaders/terrain.gdshader
+res://src/actors/terrain.tscn
+res://src/actors/terrain.gd
