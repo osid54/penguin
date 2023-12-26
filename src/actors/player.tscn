@@ -8,7 +8,7 @@
 
 [node name="player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-wall_min_slide_angle = 1.0472
+wall_min_slide_angle = 1.5708
 script = ExtResource("1_yhv6n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -20,3 +20,7 @@ mesh = SubResource("CapsuleMesh_cae4q")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.893552, 0.44896, 0, -0.44896, 0.893552, 0, 1.66684, 3.02841)
 current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.101742, -1.15442)
+shadow_enabled = true

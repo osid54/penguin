@@ -1,8 +1,8 @@
+OmniLight3D
 Camera3D
 MeshInstance3D
 CollisionShape3D
 CharacterBody3D
 DirectionalLight3D
-OmniLight3D
 StaticBody3D
 Node

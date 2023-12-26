@@ -14,4 +14,5 @@ void vertex() {
 void fragment() {
 	ALBEDO = texture(_a, UV).rgb * texture(radialColor, UV).rgb;
 	NORMAL_MAP = texture(normals, UV).xyz;
+	METALLIC = 0.3;
 }
