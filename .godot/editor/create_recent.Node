@@ -1,0 +1,6 @@
+OmniLight3D
+Camera3D
+MeshInstance3D
+StaticBody3D
+CollisionShape3D
+Node

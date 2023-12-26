@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx7m5b3psvfjm"]
+
+[ext_resource type="Shader" path="res://src/shaders/terrain.gdshader" id="1_c66co"]
+[ext_resource type="Script" path="res://src/actors/terrain.gd" id="1_pba0n"]
+[ext_resource type="Script" path="res://addons/control_camera3d/nodes/control_camera_3d.gd" id="3_50c8k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gcx4"]
+render_priority = 0
+shader = ExtResource("1_c66co")
+shader_parameter/heightRatio = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs315"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r13ur"]
+material = SubResource("StandardMaterial3D_rs315")
+
+[node name="terrain" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_2gcx4")
+mesh = SubResource("PlaneMesh_r13ur")
+script = ExtResource("1_pba0n")
+chunkSize = 128.0
+heightRatio = 8.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+
+[node name="ControlCamera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.90076, -0.252619, 0.35329, 0, 0.81344, 0.581649, -0.434316, -0.523926, 0.732715, 1.20742, 1.98787, 2.50416)
+current = true
+script = ExtResource("3_50c8k")
+translation_speed = 2.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.775598, 0)
+shadow_enabled = true
+omni_range = 1.0
