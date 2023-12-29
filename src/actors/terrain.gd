@@ -52,6 +52,7 @@ func _ready():
 	#normals = material_override.get("shader_parameter/normals")
 	
 	updateTerrain()
+	createDebris()
 
 func updateTerrain():
 	material_override.set("shader_parameter/heightmap", textNoise)
@@ -76,6 +77,17 @@ func updateTerrain():
 	colShape.shape = shape
 	var scaleRatio = chunkSize/float(img.get_width())
 	colShape.scale = Vector3(scaleRatio, 1, scaleRatio)
-
-func _process(_delta):
-	pass
+	
+func createDebris():
+	for i in range(shape.map_width):
+		for j in range(shape.map_depth):
+			if shape.map_data[i*shape.map_depth+j] >= 1:
+				if randf() <= 0.02:
+					var m = MeshInstance3D.new()
+					var s = SphereMesh.new()
+					s.radius = .5
+					s.height = 1
+					m.mesh = s
+					var scaleRatio = chunkSize/float(img.get_width())
+					m.position = Vector3((j-shape.map_width/2.0)*scaleRatio, shape.map_data[i*shape.map_depth+j], (i-shape.map_depth/2.0)*scaleRatio)
+					add_child(m)

@@ -1,60 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://bx7m5b3psvfjm"]
+[gd_scene load_steps=6 format=3 uid="uid://bx7m5b3psvfjm"]
 
-[ext_resource type="Shader" path="res://src/shaders/terrain.gdshader" id="1_c66co"]
 [ext_resource type="Script" path="res://src/actors/terrain.gd" id="1_pba0n"]
-[ext_resource type="Gradient" uid="uid://brmsg8dvwpec4" path="res://src/themes/iceGradient.tres" id="2_asg1y"]
-[ext_resource type="Texture2D" uid="uid://ug4i85eq26sl" path="res://src/themes/islandGradientColor.tres" id="2_dyvvp"]
+[ext_resource type="Material" uid="uid://dxp83qyn8x73e" path="res://src/shaders/originalAttempt.tres" id="1_s3ho1"]
 [ext_resource type="Script" path="res://addons/control_camera3d/nodes/control_camera_3d.gd" id="3_50c8k"]
-[ext_resource type="Texture2D" uid="uid://dc3qiu4g6as71" path="res://src/themes/islandGradient.tres" id="3_btart"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_f1lyg"]
-noise_type = 5
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l10uy"]
-width = 2048
-height = 2048
-color_ramp = ExtResource("2_asg1y")
-noise = SubResource("FastNoiseLite_f1lyg")
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eo1gk"]
-width = 2048
-height = 2048
-noise = SubResource("FastNoiseLite_f1lyg")
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8pmk2"]
-width = 2048
-height = 2048
-as_normal_map = true
-noise = SubResource("FastNoiseLite_f1lyg")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gcx4"]
-render_priority = 0
-shader = ExtResource("1_c66co")
-shader_parameter/heightRatio = 1.0
-shader_parameter/_a = SubResource("NoiseTexture2D_l10uy")
-shader_parameter/heightmap = SubResource("NoiseTexture2D_eo1gk")
-shader_parameter/normals = SubResource("NoiseTexture2D_8pmk2")
-shader_parameter/radialHeight = ExtResource("3_btart")
-shader_parameter/radialColor = ExtResource("2_dyvvp")
+[ext_resource type="PackedScene" uid="uid://bw57o2i13laqn" path="res://src/actors/water.tscn" id="3_c8kxa"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v752p"]
 subdivide_width = 512
 subdivide_depth = 512
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnkd6"]
-transparency = 1
-albedo_color = Color(0.231373, 0.396078, 0.803922, 0.560784)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_au7mg"]
-material = SubResource("StandardMaterial3D_tnkd6")
-top_radius = 512.0
-bottom_radius = 512.0
-height = 0.1
-radial_segments = 16
-rings = 1
-
 [node name="terrain" type="MeshInstance3D"]
-material_override = SubResource("ShaderMaterial_2gcx4")
+material_override = ExtResource("1_s3ho1")
 mesh = SubResource("PlaneMesh_v752p")
 script = ExtResource("1_pba0n")
 chunkSize = 128.0
@@ -69,26 +25,49 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.82804, 42.6183, -2.91997)
 light_color = Color(0, 1, 1, 1)
 light_energy = 16.0
 shadow_enabled = true
+shadow_blur = 2.0
+omni_range = 128.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 223.172, 15.9038, 212.023)
+light_color = Color(0, 1, 1, 1)
+light_energy = 16.0
+shadow_enabled = true
+shadow_blur = 2.0
+omni_range = 128.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 242.536, 15.9038, -209.53)
+light_color = Color(0, 1, 1, 1)
+light_energy = 16.0
+shadow_enabled = true
+shadow_blur = 2.0
+omni_range = 128.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -216.263, 15.9038, -276.857)
+light_color = Color(0, 1, 1, 1)
+light_energy = 16.0
+shadow_enabled = true
+shadow_blur = 2.0
+omni_range = 128.0
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -131.616, 15.9038, 228.14)
+light_color = Color(0, 1, 1, 1)
+light_energy = 16.0
+shadow_enabled = true
+shadow_blur = 2.0
 omni_range = 128.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 500, 0)
 shadow_enabled = true
-shadow_blur = 2.313
+shadow_blur = 2.5
+directional_shadow_max_distance = 256.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02308, 0)
-mesh = SubResource("CylinderMesh_au7mg")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("CylinderMesh_au7mg")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("CylinderMesh_au7mg")
-skeleton = NodePath("../../..")
+[node name="waterSurface" parent="." instance=ExtResource("3_c8kxa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 script = ExtResource("3_50c8k")

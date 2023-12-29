@@ -1,12 +1,13 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+@export var accel := 1.0
+@export var maxSpeed := 5.0
+
 const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -24,10 +25,13 @@ func _physics_process(delta):
 	rotate(Vector3(0,1,0),rot_dir/20)
 	var direction = (transform.basis * Vector3(0, 0, input_dir)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = move_toward(velocity.x, direction.x * maxSpeed, accel)
+		velocity.z = move_toward(velocity.z, direction.z * maxSpeed, accel)
+
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, accel)
+		velocity.z = move_toward(velocity.z, 0, accel)
+	
+	$penguin/AnimationTree.set("parameters/Blend2/blend_amount", sqrt(velocity.x**2+velocity.z**2)/maxSpeed)
 
 	move_and_slide()
