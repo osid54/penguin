@@ -8,6 +8,7 @@ default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(-10.045, -1, 0,
 op_type = 2
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wwyt0"]
+noise_type = 3
 fractal_type = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tdocv"]

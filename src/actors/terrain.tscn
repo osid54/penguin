@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx7m5b3psvfjm"]
+[gd_scene load_steps=4 format=3 uid="uid://bx7m5b3psvfjm"]
 
 [ext_resource type="Script" path="res://src/actors/terrain.gd" id="1_pba0n"]
 [ext_resource type="Material" uid="uid://dxp83qyn8x73e" path="res://src/shaders/originalAttempt.tres" id="1_s3ho1"]
-[ext_resource type="Script" path="res://addons/control_camera3d/nodes/control_camera_3d.gd" id="3_50c8k"]
-[ext_resource type="PackedScene" uid="uid://bw57o2i13laqn" path="res://src/actors/water.tscn" id="3_c8kxa"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v752p"]
 subdivide_width = 512
@@ -19,58 +17,3 @@ heightRatio = 16.0
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.82804, 42.6183, -2.91997)
-light_color = Color(0, 1, 1, 1)
-light_energy = 16.0
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 128.0
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 223.172, 15.9038, 212.023)
-light_color = Color(0, 1, 1, 1)
-light_energy = 16.0
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 128.0
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 242.536, 15.9038, -209.53)
-light_color = Color(0, 1, 1, 1)
-light_energy = 16.0
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 128.0
-
-[node name="OmniLight3D4" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -216.263, 15.9038, -276.857)
-light_color = Color(0, 1, 1, 1)
-light_energy = 16.0
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 128.0
-
-[node name="OmniLight3D5" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -131.616, 15.9038, 228.14)
-light_color = Color(0, 1, 1, 1)
-light_energy = 16.0
-shadow_enabled = true
-shadow_blur = 2.0
-omni_range = 128.0
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 500, 0)
-shadow_enabled = true
-shadow_blur = 2.5
-directional_shadow_max_distance = 256.0
-
-[node name="waterSurface" parent="." instance=ExtResource("3_c8kxa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-script = ExtResource("3_50c8k")
-translation_speed = 100.0
-zoom_speed = 100.0
-zoom_out = 100.0

@@ -8,6 +8,7 @@ extends MeshInstance3D
 @export var heightRatio := 1.0
 @export var colShapeSizeRatio := 1.0/8
 @export var size := 512
+@export var debrisDensity := 0.02
 
 var img := Image.new()
 var img2 := Image.new()
@@ -82,7 +83,7 @@ func createDebris():
 	for i in range(shape.map_width):
 		for j in range(shape.map_depth):
 			if shape.map_data[i*shape.map_depth+j] >= 1:
-				if randf() <= 0.02:
+				if randf() <= debrisDensity:
 					var m = MeshInstance3D.new()
 					var s = SphereMesh.new()
 					s.radius = .5

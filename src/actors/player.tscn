@@ -13,10 +13,6 @@ script = ExtResource("1_yhv6n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_8b3f4")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -9.58214e-08, 1.18618e-07, 3.23666e-08, 0.893552, 0.44896, -1.49012e-07, -0.44896, 0.893552, 0, 2.87507, 2.54278)
-current = true
-
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78965, -1.16479)
 shadow_enabled = true
@@ -24,3 +20,9 @@ omni_range = 10.65
 
 [node name="penguin" parent="." instance=ExtResource("2_0ksr8")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="camPivot" type="Marker3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="camPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 3)
+current = true

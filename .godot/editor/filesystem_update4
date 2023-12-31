@@ -5,9 +5,9 @@ res://src/shaders/terrain.gdshader
 res://src/shaders/originalAttempt.tres
 res://src/shaders/water.tres
 res://src/actors/water.gdshader
-res://src/actors/terrain.gd
 res://src/actors/terrain.tscn
 res://src/actors/player.tscn
-res://src/actors/penguin.tscn
 res://src/actors/water.tscn
 res://src/actors/player.gd
+res://src/actors/waterSurface.gd
+res://src/shaders/stars.tres

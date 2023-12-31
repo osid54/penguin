@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 window/size/initial_position_type=2
 window/size/initial_screen=1
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 forward={
@@ -54,4 +58,4 @@ space={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.247059, 0.203922, 0.521569, 1)
+environment/defaults/default_clear_color=Color(0.0901961, 0.0901961, 0.235294, 1)
