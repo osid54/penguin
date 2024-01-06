@@ -24,7 +24,7 @@ texture = SubResource("NoiseTexture2D_tdocv")
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_pr0wt"]
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_wdokj"]
-constant = 0.02
+constant = 0.1
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_manvc"]
 noise_type = 3
@@ -59,7 +59,7 @@ input_name = "view"
 [sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_lm8ig"]
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_mh2gw"]
-constant = 0.5
+constant = 0.2
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_wvmk5"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(-10.045, -1, 0, 0)]
@@ -116,7 +116,7 @@ void fragment() {
 
 
 // FloatConstant:8
-	float n_out8p0 = 0.500000;
+	float n_out8p0 = 0.200000;
 
 
 // FloatConstant:16
@@ -124,7 +124,7 @@ void fragment() {
 
 
 // FloatConstant:17
-	float n_out17p0 = 0.020000;
+	float n_out17p0 = 0.100000;
 
 
 // Texture2D:12

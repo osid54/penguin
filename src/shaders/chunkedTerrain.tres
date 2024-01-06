@@ -1,0 +1,87 @@
+[gd_resource type="ShaderMaterial" load_steps=13 format=3 uid="uid://c1gcnk8gs8d55"]
+
+[sub_resource type="Shader" id="Shader_lnkry"]
+code = "shader_type spatial;
+
+uniform sampler2D _a;
+uniform sampler2D heightmap;
+uniform sampler2D normals;
+uniform sampler2D radialHeight;
+uniform sampler2D radialColor;
+uniform float heightRatio = 1.0;
+
+void vertex() {
+	VERTEX.y += texture(heightmap, UV).r * texture(radialHeight, UV).r * heightRatio;
+}
+
+void fragment() {
+	ALBEDO = texture(_a, UV).rgb * texture(radialColor, UV).rgb;
+	NORMAL_MAP = texture(normals, UV).xyz;
+	METALLIC = 0.3;
+	ROUGHNESS = 0.7;
+}"
+
+[sub_resource type="Gradient" id="Gradient_xmapm"]
+colors = PackedColorArray(0, 0.183073, 0.533943, 1, 0.763061, 0.886397, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bq33m"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wgsal"]
+width = 2048
+height = 2048
+color_ramp = SubResource("Gradient_xmapm")
+noise = SubResource("FastNoiseLite_bq33m")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n843s"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a6mm6"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_n843s")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kf1vp"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ei2u1"]
+width = 2048
+height = 2048
+as_normal_map = true
+noise = SubResource("FastNoiseLite_kf1vp")
+
+[sub_resource type="Gradient" id="Gradient_tibv5"]
+colors = PackedColorArray(0.763061, 0.886397, 1, 1, 0, 0.183073, 0.533943, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rcyl5"]
+gradient = SubResource("Gradient_tibv5")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_hpc5k"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(0.501961, 0.501961, 0.501961, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j53vw"]
+gradient = SubResource("Gradient_hpc5k")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_lnkry")
+shader_parameter/heightRatio = 1.0
+shader_parameter/_a = SubResource("NoiseTexture2D_wgsal")
+shader_parameter/heightmap = SubResource("NoiseTexture2D_a6mm6")
+shader_parameter/normals = SubResource("NoiseTexture2D_ei2u1")
+shader_parameter/radialHeight = SubResource("GradientTexture2D_j53vw")
+shader_parameter/radialColor = SubResource("GradientTexture2D_rcyl5")

@@ -4,10 +4,11 @@ res://src/themes/islandGradientColor.tres
 res://src/shaders/terrain.gdshader
 res://src/shaders/originalAttempt.tres
 res://src/shaders/water.tres
-res://src/actors/water.gdshader
-res://src/actors/terrain.tscn
-res://src/actors/player.tscn
-res://src/actors/water.tscn
-res://src/actors/player.gd
-res://src/actors/waterSurface.gd
 res://src/shaders/stars.tres
+res://src/shaders/chunkedTerrain.tres
+res://src/actors/env/water.gdshader
+res://src/actors/env/terrain.tscn
+res://src/actors/env/terrainChunk.tscn
+res://src/actors/env/terrainChunker.tscn
+res://src/scenes/terrainChunkTest.tscn
+res://src/actors/spawns/rock.tscn

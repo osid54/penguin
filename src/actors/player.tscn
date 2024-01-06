@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://src/actors/player.gd" id="1_yhv6n"]
 [ext_resource type="PackedScene" uid="uid://2yuww1ghnh6g" path="res://src/actors/penguin.tscn" id="2_0ksr8"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8b3f4"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_dwmch"]
 
 [node name="player" type="CharacterBody3D"]
 wall_min_slide_angle = 1.5708
 script = ExtResource("1_yhv6n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_8b3f4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_dwmch")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78965, -1.16479)

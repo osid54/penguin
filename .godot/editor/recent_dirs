@@ -1,5 +1,7 @@
 res://src/shaders
-res://src/actors
 res://src/scenes
+res://src/actors/env
+res://src/assets/sprites
+res://src/actors
 res://
 res://src/themes

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://2yuww1ghnh6g"]
 
-[ext_resource type="PackedScene" uid="uid://dlasaywjnmiee" path="res://src/assets/penguin.glb" id="1_vsclg"]
+[ext_resource type="PackedScene" uid="uid://dlasaywjnmiee" path="res://src/assets/models/penguin.glb" id="1_vsclg"]
 
 [sub_resource type="Animation" id="Animation_t6aka"]
 resource_name = "pengIdle"

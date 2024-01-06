@@ -13,12 +13,26 @@ config_version=5
 config/name="penguin"
 run/main_scene="res://src/scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://src/assets/sprites/peng.png"
 
 [display]
 
 window/size/initial_position_type=2
 window/size/initial_screen=1
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://src/": "gray",
+"res://src/actors/": "red",
+"res://src/actors/env/": "green",
+"res://src/actors/spawns/": "orange",
+"res://src/assets/": "teal",
+"res://src/scenes/": "blue",
+"res://src/shaders/": "purple",
+"res://src/themes/": "pink"
+}
 
 [filesystem]
 

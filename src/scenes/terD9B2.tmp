@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://byk0406ejfnvf"]
+
+[ext_resource type="PackedScene" uid="uid://crkkqjw6eecd" path="res://src/actors/env/terrainChunker.tscn" id="1_oni04"]
+
+[node name="terrainChunkTest" type="Node"]
+
+[node name="terrainChunker" parent="." instance=ExtResource("1_oni04")]
+unique_name_in_owner = true

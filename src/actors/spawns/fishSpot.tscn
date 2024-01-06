@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7a2qi6bsm5kx"]
+
+[ext_resource type="Script" path="res://src/actors/spawns/fishSpot.gd" id="1_cg1dh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n2gdo"]
+transparency = 1
+albedo_color = Color(0, 0.168627, 0.317647, 0.568627)
+albedo_texture_force_srgb = true
+roughness = 0.5
+emission_enabled = true
+emission = Color(0, 0.168627, 0.317647, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="TorusMesh" id="TorusMesh_tbvl4"]
+material = SubResource("StandardMaterial3D_n2gdo")
+inner_radius = 1.0
+outer_radius = 1.1
+rings = 32
+ring_segments = 4
+
+[sub_resource type="TorusMesh" id="TorusMesh_ld8p0"]
+material = SubResource("StandardMaterial3D_n2gdo")
+inner_radius = 1.0
+outer_radius = 1.1
+rings = 32
+ring_segments = 4
+
+[node name="fishSpot" type="Node3D"]
+script = ExtResource("1_cg1dh")
+
+[node name="outerMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_tbvl4")
+
+[node name="innerMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_ld8p0")
+skeleton = NodePath("../outerMesh")

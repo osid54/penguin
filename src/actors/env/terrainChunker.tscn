@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://crkkqjw6eecd"]
+
+[ext_resource type="Script" path="res://src/actors/env/terrainChunker.gd" id="1_m0wbg"]
+
+[node name="terrainChunker" type="Node"]
+script = ExtResource("1_m0wbg")

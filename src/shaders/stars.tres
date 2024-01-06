@@ -102,7 +102,7 @@ default_value = 1.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_lklw3"]
 noise_type = 3
-frequency = 0.0258
+frequency = 0.0118
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7ym4i"]
 seamless = true
@@ -151,16 +151,16 @@ op_type = 2
 operator = 1
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_vlg8x"]
-constant = 1.0
+constant = 0.3
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_yfgbb"]
-constant = 1.0
+constant = 0.5
 
 [sub_resource type="Gradient" id="Gradient_svhwj"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8teto"]
 noise_type = 3
-frequency = 0.0511
+frequency = 0.018
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1bpfx"]
 seamless = true
@@ -195,7 +195,7 @@ constant = 1.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_3chss"]
 noise_type = 3
-frequency = 0.0054
+frequency = 0.0217
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a22fi"]
 seamless = true
@@ -214,20 +214,28 @@ operator = 2
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
+uniform float emissionStrength : hint_range(0, 32) = 5;
+uniform sampler2D tex_frg_2;
 uniform sampler2D tex_frg_3;
 uniform float visibilityL : hint_range(0, 1) = 1;
 uniform sampler2D tex_frg_5;
 uniform float visibilityM : hint_range(0, 1) = 1;
 uniform sampler2D tex_frg_8;
 uniform float visibilityS : hint_range(0, 1) = 1;
-uniform float emissionStrength : hint_range(0, 32) = 5;
-uniform sampler2D tex_frg_2;
 
 
 
 void fragment() {
-// FloatConstant:50
-	float n_out50p0 = 1.000000;
+// FloatParameter:11
+	float n_out11p0 = emissionStrength;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// VectorOp:9
+	vec4 n_out9p0 = vec4(n_out11p0) * n_out2p0;
 
 
 // Texture2D:3
@@ -255,11 +263,11 @@ void fragment() {
 
 
 // VectorOp:38
-	vec4 n_out38p0 = vec4(n_out50p0) * n_out12p0;
+	vec4 n_out38p0 = n_out9p0 * n_out12p0;
 
 
 // FloatConstant:48
-	float n_out48p0 = 1.000000;
+	float n_out48p0 = 0.300000;
 
 
 // VectorOp:51
@@ -291,7 +299,7 @@ void fragment() {
 
 
 // VectorOp:39
-	vec4 n_out39p0 = vec4(n_out50p0) * n_out22p0;
+	vec4 n_out39p0 = n_out9p0 * n_out22p0;
 
 
 // VectorOp:44
@@ -299,7 +307,7 @@ void fragment() {
 
 
 // FloatConstant:49
-	float n_out49p0 = 1.000000;
+	float n_out49p0 = 0.500000;
 
 
 // VectorOp:52
@@ -335,7 +343,7 @@ void fragment() {
 
 
 // VectorOp:40
-	vec4 n_out40p0 = vec4(n_out50p0) * n_out28p0;
+	vec4 n_out40p0 = n_out9p0 * n_out28p0;
 
 
 // VectorOp:42
@@ -358,26 +366,13 @@ void fragment() {
 	vec4 n_out37p0 = n_out36p0 + n_out53p0;
 
 
-// FloatParameter:11
-	float n_out11p0 = emissionStrength;
-
-
-// Texture2D:2
-	vec4 n_out2p0 = texture(tex_frg_2, UV);
-
-
-// VectorOp:9
-	vec4 n_out9p0 = vec4(n_out11p0) * n_out2p0;
-
-
 // Output:0
 	ALBEDO = vec3(n_out37p0.xyz);
-	EMISSION = vec3(n_out9p0.xyz);
+	EMISSION = vec3(n_out37p0.xyz);
 
 
 }
 "
-graph_offset = Vector2(-1387.17, 12.5301)
 nodes/fragment/0/position = Vector2(60, 840)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_rqesi")
 nodes/fragment/2/position = Vector2(-1840, 180)
@@ -451,4 +446,4 @@ nodes/fragment/53/node = SubResource("VisualShaderNodeVectorOp_ptxwh")
 nodes/fragment/53/position = Vector2(-760, 1360)
 nodes/fragment/54/node = SubResource("VisualShaderNodeFloatConstant_jdw1f")
 nodes/fragment/54/position = Vector2(-980, 1520)
-nodes/fragment/connections = PackedInt32Array(3, 0, 12, 0, 3, 0, 13, 0, 13, 0, 12, 1, 14, 0, 16, 0, 15, 0, 16, 1, 16, 0, 13, 1, 21, 0, 22, 1, 19, 0, 20, 0, 18, 0, 20, 1, 20, 0, 21, 1, 5, 0, 21, 0, 5, 0, 22, 0, 27, 0, 28, 1, 24, 0, 25, 0, 29, 0, 25, 1, 25, 0, 27, 1, 8, 0, 27, 0, 8, 0, 28, 0, 36, 0, 37, 0, 12, 0, 38, 1, 22, 0, 39, 1, 28, 0, 40, 1, 2, 0, 9, 1, 11, 0, 9, 0, 40, 0, 42, 0, 42, 0, 43, 0, 5, 0, 42, 1, 3, 0, 43, 1, 3, 0, 44, 1, 39, 0, 44, 0, 37, 0, 0, 0, 38, 0, 51, 0, 48, 0, 51, 1, 51, 0, 36, 0, 44, 0, 52, 0, 49, 0, 52, 1, 43, 0, 53, 0, 54, 0, 53, 1, 52, 0, 36, 1, 53, 0, 37, 1, 50, 0, 38, 0, 50, 0, 39, 0, 50, 0, 40, 0, 9, 0, 0, 5)
+nodes/fragment/connections = PackedInt32Array(3, 0, 12, 0, 3, 0, 13, 0, 13, 0, 12, 1, 14, 0, 16, 0, 15, 0, 16, 1, 16, 0, 13, 1, 21, 0, 22, 1, 19, 0, 20, 0, 18, 0, 20, 1, 20, 0, 21, 1, 5, 0, 21, 0, 5, 0, 22, 0, 27, 0, 28, 1, 24, 0, 25, 0, 29, 0, 25, 1, 25, 0, 27, 1, 8, 0, 27, 0, 8, 0, 28, 0, 36, 0, 37, 0, 12, 0, 38, 1, 22, 0, 39, 1, 28, 0, 40, 1, 2, 0, 9, 1, 11, 0, 9, 0, 40, 0, 42, 0, 42, 0, 43, 0, 5, 0, 42, 1, 3, 0, 43, 1, 3, 0, 44, 1, 39, 0, 44, 0, 38, 0, 51, 0, 48, 0, 51, 1, 51, 0, 36, 0, 44, 0, 52, 0, 49, 0, 52, 1, 43, 0, 53, 0, 54, 0, 53, 1, 52, 0, 36, 1, 53, 0, 37, 1, 9, 0, 38, 0, 9, 0, 39, 0, 9, 0, 40, 0, 37, 0, 0, 5, 37, 0, 0, 0)
