@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq0mv0rqwjxqk"]
+[gd_scene load_steps=6 format=3 uid="uid://cq0mv0rqwjxqk"]
 
-[ext_resource type="Script" path="res://src/actors/player.gd" id="1_yhv6n"]
-[ext_resource type="PackedScene" uid="uid://2yuww1ghnh6g" path="res://src/actors/penguin.tscn" id="2_0ksr8"]
+[ext_resource type="Script" path="res://src/actors/penguin/player.gd" id="1_yhv6n"]
+[ext_resource type="PackedScene" uid="uid://2yuww1ghnh6g" path="res://src/actors/penguin/penguin.tscn" id="2_0ksr8"]
+[ext_resource type="PackedScene" uid="uid://djjgr12yrhoup" path="res://src/actors/fishingGame/popUp.tscn" id="3_tr3d8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dwmch"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulnnb"]
+
 [node name="player" type="CharacterBody3D"]
+collision_layer = 2
 wall_min_slide_angle = 1.5708
 script = ExtResource("1_yhv6n")
 
@@ -26,3 +30,15 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [node name="Camera3D" type="Camera3D" parent="camPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3, 3)
 current = true
+
+[node name="itemArea" type="ShapeCast3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, -1, 0, -0.5)
+shape = SubResource("CapsuleShape3D_ulnnb")
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="popUp" parent="." instance=ExtResource("3_tr3d8")]
+visible = false
+
+[editable path="popUp"]

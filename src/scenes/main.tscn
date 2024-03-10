@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://dcmssrx84auwe"]
 
 [ext_resource type="PackedScene" uid="uid://bx7m5b3psvfjm" path="res://src/actors/env/terrain.tscn" id="1_rub1y"]
-[ext_resource type="PackedScene" uid="uid://cq0mv0rqwjxqk" path="res://src/actors/player.tscn" id="2_h0buy"]
+[ext_resource type="PackedScene" uid="uid://cq0mv0rqwjxqk" path="res://src/actors/penguin/player.tscn" id="2_h0buy"]
 [ext_resource type="PackedScene" uid="uid://bw57o2i13laqn" path="res://src/actors/env/water.tscn" id="3_tv2p5"]
 [ext_resource type="Shader" uid="uid://d4y7vwkvt0v7" path="res://src/shaders/stars.tres" id="5_djlip"]
 

@@ -19,5 +19,6 @@ debrisMesh = ExtResource("3_o3e6k")
 fishSpotMesh = ExtResource("4_rk4a7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]

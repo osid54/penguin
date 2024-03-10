@@ -7,8 +7,17 @@ res://src/shaders/water.tres
 res://src/shaders/stars.tres
 res://src/shaders/chunkedTerrain.tres
 res://src/actors/env/water.gdshader
+res://src/scenes/fishTest.tscn
+res://src/actors/fishingGame/popUp.tscn
+res://src/actors/fishingGame/target.tscn
 res://src/actors/env/terrain.tscn
 res://src/actors/env/terrainChunk.tscn
 res://src/actors/env/terrainChunker.tscn
 res://src/scenes/terrainChunkTest.tscn
 res://src/actors/spawns/rock.tscn
+res://src/actors/fishingGame/popUp.gd
+res://src/actors/fishingGame/target.gd
+res://src/actors/spawns/fishSpot.tscn
+res://src/actors/penguin/penguin.tscn
+res://src/actors/penguin/player.tscn
+res://src/actors/penguin/player.gd

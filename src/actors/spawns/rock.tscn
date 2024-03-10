@@ -3,10 +3,8 @@
 [ext_resource type="Script" path="res://src/actors/spawns/rock.gd" id="1_jx45p"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_q7dpm"]
-height = 0.5
 radial_segments = 16
 rings = 8
-is_hemisphere = true
 
 [sub_resource type="Gradient" id="Gradient_n7nx5"]
 colors = PackedColorArray(0.2862, 0.37153, 0.53, 1, 0.4788, 0.55692, 0.63, 1)
@@ -16,17 +14,18 @@ noise_type = 5
 frequency = 0.1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0qmdv"]
-width = 32
-height = 32
+width = 64
+height = 64
 seamless = true
 color_ramp = SubResource("Gradient_n7nx5")
 noise = SubResource("FastNoiseLite_fay16")
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_evvn8"]
-width = 32
-height = 32
+width = 64
+height = 64
 seamless = true
 as_normal_map = true
+bump_strength = 3.0
 noise = SubResource("FastNoiseLite_fay16")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vt1sl"]
@@ -34,7 +33,6 @@ albedo_texture = SubResource("NoiseTexture2D_0qmdv")
 metallic = 0.3
 roughness = 0.7
 normal_enabled = true
-normal_scale = 0.32
 normal_texture = SubResource("NoiseTexture2D_evvn8")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yqvaw"]
@@ -49,6 +47,7 @@ mesh = SubResource("SphereMesh_q7dpm")
 surface_material_override/0 = SubResource("StandardMaterial3D_vt1sl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)

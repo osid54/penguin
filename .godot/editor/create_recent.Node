@@ -1,3 +1,7 @@
+Panel
+ShapeCast3D
+CollisionShape3D
+Area3D
 MeshInstance3D
 MeshInstance2D
 DirectionalLight3D
@@ -5,10 +9,7 @@ DirectionalLight2D
 Camera3D
 Node
 TextureRect
-CollisionShape3D
 StaticBody3D
 OmniLight3D
 VisibleOnScreenNotifier3D
 VisibleOnScreenEnabler3D
-RigidBody3D
-Node3D

@@ -11,20 +11,23 @@ var gravity = 15
 
 var rotating = false
 
+func _unhandled_key_input(event):
+	if event.is_action_released("interact"):
+		if $itemArea.get_collision_count() > 0:
+			for i in $itemArea.get_collision_count():
+				if $itemArea.get_collider(i).is_in_group("fishingSpot"):
+					$popUp.visible = true
+					$popUp.create()
+
 func _physics_process(delta):
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle jump.
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = jumpV
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_axis("forward","backward")
 	
-	#TODO
 	var speed := maxSpeed
 	if input_dir > 0: speed = maxSpeed/2
 	else: speed = maxSpeed
